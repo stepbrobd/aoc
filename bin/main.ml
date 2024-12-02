@@ -16,8 +16,8 @@ let () =
       match part with
       | "1" -> M.part1 input
       | "2" -> M.part2 input
-      | _ -> error_and_exit "invalid part (use '1' or '2')"
+      | _ -> panic "invalid part (use '1' or '2')"
     in
     Printf.printf "result: %s\n" result
-  | _ -> error_and_exit "usage: <program> <year> <day> <part> <input>"
+  | _ -> panic "usage: <exe> <year> <day> <part> <input>"
 ;;
