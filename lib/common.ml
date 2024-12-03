@@ -1,4 +1,4 @@
-open Core
+open! Core
 
 module type Puzzle = sig
   val part_1 : string -> string
