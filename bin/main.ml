@@ -1,7 +1,7 @@
 open Common
 open Core
 
-let dispatch year day part input =
+let dispatch year day part path =
   let module_for year day =
     let open Aoc in
     match year with
@@ -38,14 +38,15 @@ let dispatch year day part input =
   match module_for year day with
   | Some (module M : Puzzle) ->
     (match part with
-     | "1" -> M.part_1 input
-     | "2" -> M.part_2 input
+     | "1" -> M.part_1 path
+     | "2" -> M.part_2 path
      | _ -> sprintf "part %s not valid" part)
   | None -> sprintf "dispatch failed for year %s day %s" year day
 ;;
 
 let () =
   match Sys.get_argv () |> Array.to_list with
-  | [ _; year; day; part ] -> print_endline (dispatch year day part (get_input year day))
+  | [ _; year; day; part ] ->
+    print_endline (dispatch year day part (get_input_path year day))
   | _ -> failwith "dune exec aoc -- <year> <day> <part>"
 ;;

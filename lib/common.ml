@@ -1,22 +1,22 @@
 open Core
 
 module type Puzzle = sig
-  val part_1 : string list -> string
-  val part_2 : string list -> string
+  val part_1 : string -> string
+  val part_2 : string -> string
 end
+
+let get_input_path year day = Printf.sprintf "src/year_%s/day_%s.txt" year day
+
+let get_string path =
+  try In_channel.read_all path with
+  | _ -> ""
+;;
 
 let get_lines path =
   try
-    Some
-      (In_channel.with_file path ~f:(fun in_channel -> In_channel.input_lines in_channel))
+    In_channel.with_file path ~f:(fun in_channel -> In_channel.input_lines in_channel)
   with
-  | _ -> None
-;;
-
-let get_input year day =
-  match get_lines (Printf.sprintf "src/year_%s/day_%s.txt" year day) with
-  | Some lines -> lines
-  | None -> []
+  | _ -> []
 ;;
 
 let of_int_pair s =
