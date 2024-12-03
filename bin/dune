@@ -1,4 +1,4 @@
 (executable
  (name main)
  (public_name aoc)
- (libraries common core))
+ (libraries aoc common core))
