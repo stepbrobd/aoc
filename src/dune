@@ -1,6 +1,5 @@
 (include_subdirs qualified)
 
 (library
- (name src)
- (wrapped false)
- (libraries common core))
+ (name aoc)
+ (libraries core))

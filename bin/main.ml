@@ -1,23 +1,8 @@
 open Common
 open Core
 
-module type DayModule = sig
-  val part1 : string -> string
-  val part2 : string -> string
-end
-
 let () =
-  let args = List.drop (Sys.get_argv () |> Array.to_list) 1 in
-  match args with
-  | [ year; day; part; input ] ->
-    load_module year day;
-    let module M = (val (Obj.magic () : (module DayModule))) in
-    let result =
-      match part with
-      | "1" -> M.part1 input
-      | "2" -> M.part2 input
-      | _ -> panic "invalid part (use '1' or '2')"
-    in
-    Printf.printf "result: %s\n" result
-  | _ -> panic "usage: <exe> <year> <day> <part> <input>"
+  match Sys.get_argv () |> Array.to_list with
+  | [ _; year; day; part ] -> print_endline (dispatch year day part (get_input year day))
+  | _ -> failwith "dune exec aoc -- <year> <day> <part>"
 ;;
