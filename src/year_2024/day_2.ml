@@ -1,5 +1,5 @@
-open Common
-open Core
+open! Core
+open! Common
 
 let check x =
   is_sorted_custom x ~compare:(fun a b ->
