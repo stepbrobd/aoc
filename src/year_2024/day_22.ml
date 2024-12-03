@@ -1,2 +1,5 @@
-let part_1 input = input
-let part_2 input = input
+open! Core
+open! Common
+
+let part_1 path = path
+let part_2 path = path
