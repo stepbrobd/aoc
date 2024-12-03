@@ -1,5 +1,5 @@
-open Core
-open Common
+open! Core
+open! Common
 
 let part_1 path =
   let input = get_lines path in
