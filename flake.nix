@@ -15,6 +15,7 @@
           dune_3
           ocaml
           ocamlformat
+          sops
         ] ++ (with ocamlPackages; [
           core
           ocurl
