@@ -1,5 +1,22 @@
-open Common
-open Core
+open! Core
+open! Common
+open Curl
+
+let download year day =
+  let path = get_input_path year day in
+  let url = sprintf "https://adventofcode.com/%s/day/%s/input" year day in
+  let curl = Curl.init () in
+  let buffer = Buffer.create (1024 * 16) in
+  set_url curl url;
+  set_cookie curl (sprintf "session=%s" (Sys.getenv_exn "COOKIE"));
+  set_writefunction curl (fun s ->
+    Buffer.add_string buffer s;
+    String.length s);
+  perform curl;
+  cleanup curl;
+  Out_channel.write_all path ~data:(Buffer.contents buffer);
+  ()
+;;
 
 let dispatch year day part path =
   let module_for year day =
@@ -47,6 +64,7 @@ let dispatch year day part path =
 let () =
   match Sys.get_argv () |> Array.to_list with
   | [ _; year; day; part ] ->
+    let () = download year day in
     print_endline (dispatch year day part (get_input_path year day))
   | _ -> failwith "dune exec aoc -- <year> <day> <part>"
 ;;

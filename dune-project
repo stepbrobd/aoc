@@ -10,4 +10,4 @@
 
 (package
  (name aoc)
- (depends core dune ocaml))
+ (depends core curl dune ocaml))

@@ -17,6 +17,7 @@
           ocamlformat
         ] ++ (with ocamlPackages; [
           core
+          ocurl
           utop
         ]);
       };
