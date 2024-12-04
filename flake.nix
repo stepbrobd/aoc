@@ -19,6 +19,7 @@
         ] ++ (with ocamlPackages; [
           core
           ocurl
+          odoc
           utop
         ]);
       };
